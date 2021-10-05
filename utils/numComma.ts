@@ -1,0 +1,1 @@
+export const commaNumber = require('comma-number')
