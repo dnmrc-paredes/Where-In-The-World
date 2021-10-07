@@ -1,13 +1,13 @@
 .main {
   flex: 1;
   display: flex;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   flex-direction: column;
 }
 
 .options {
   /* margin: 0 60px; */
-  padding: 3rem 60px 0 60px;
+  padding: 3rem 55px 0 55px;
   display: flex;
   justify-content: space-between;
   /* background-color: red; */
@@ -20,4 +20,13 @@
   /* background-color: yellow; */
   flex-flow: row wrap;
   justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+
+  .options {
+    flex-direction: column;
+    padding: 3rem 20px 0 20px;
+  }
+
 }

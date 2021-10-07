@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.css'
 import { apiURL } from '../constants/url'
 
 // Components
-import { CountryCard } from '../components/country/card'
+import { CountryCard } from '../components/country/card/card'
 import { SearchbarComponent } from '../components/searchbar/searchbar'
 import { FilterDropdown } from '../components/filterDropdown/filterDropdown'
 
