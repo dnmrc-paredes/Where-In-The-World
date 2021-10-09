@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Card = styled.div`
     height: 330px;
-    min-width: 250px;
+    width: 250px;
     border-radius: 5px;
-    margin: 40px;
+    /* margin: 40px; */
+    margin: 37.5px;
     overflow: hidden;
     box-shadow: 0px 3px 15px 2px #EDEDED;
     background-color: ${props => props.theme.bg.lightMode};
@@ -14,6 +15,7 @@ export const Card = styled.div`
 export const Title = styled.h1`
     font-size: 20px;
     margin-bottom: 10px;
+    word-wrap: break-word;
 `
 
 export const Detail = styled.p`

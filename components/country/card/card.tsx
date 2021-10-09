@@ -12,6 +12,7 @@ type Props = {
     region: string
     capital: string[]
     img: string
+    cca3: string
 }
 
 // Styled Components
@@ -20,22 +21,22 @@ import { Card, CountryDetails, CountryInfo, Title, ImageHolder, Detail } from ".
 
 export const CountryCard: FC<Props> = (props) => {
 
-    const { name, population, region, capital, img } = props
+    const { name, population, region, capital, img, cca3 } = props
 
     const router = useRouter()
 
-    const goToCountry = (name: string) => {
-        router.push(`/country/${name}`)
+    const goToCountry = () => {
+        router.push(`/country/${cca3}`)
     }
 
     return (
-        <Card onClick={() => goToCountry(name)}>
+        <Card onClick={goToCountry}>
             <ImageHolder>
                 <Image placeholder="blur" blurDataURL={img} height={150} width={250} alt={name} src={img} />
             </ImageHolder>
             <CountryInfo>
                 <CountryDetails>
-                    <Title> {name} </Title>
+                    <Title> {name.length < 15 ? name : `${name.substring(0,15)}...`} </Title>
                     <Detail> Population: {commaNumber(population)} </Detail>
                     <Detail> Region: {region} </Detail>
                     { capital ? 

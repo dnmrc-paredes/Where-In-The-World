@@ -26,7 +26,7 @@ export const Icon= styled.div`
     /* background-color: yellow; */
 
     @media screen and (max-width: 800px) {
-        flex: 3;
+        flex: 2.5;
     }
     /* min-width: 50px;
     max-width: 10vw; */

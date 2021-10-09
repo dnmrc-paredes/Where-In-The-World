@@ -1,16 +1,18 @@
 import React, { FC } from "react";
-import styled from "styled-components";
 import { IoMoonOutline } from 'react-icons/io5'
+import { useRouter } from "next/router";
 
 // Styled Components
 import { Navbar, NavTitle, Title, ToggleTheme, ThemeText } from "./headerStyles";
 
 export const Header: FC = () => {
 
+    const router = useRouter()
+
     return (
         <Navbar>
             <NavTitle>
-                <Title> Where in the world? </Title>
+                <Title onClick={() => router.push('/')}> Where in the world? </Title>
             </NavTitle>
             <ToggleTheme>
                 <IoMoonOutline size={20} />

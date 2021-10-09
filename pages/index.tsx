@@ -55,6 +55,7 @@ const Home: NextPage<Props> = ({ allCountries }) => {
                       region={country.region}
                       capital={country.capital}
                       img={country.flags.png}
+                      cca3={country.cca3}
                     />
             }) }
         </div>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Base = styled.div`
     display: flex;
+    align-items: center;
     justify-content: center;
     padding: 0 10px;
     /* background-color: red; */
@@ -11,7 +12,7 @@ export const Base = styled.div`
     border-radius: 5px;
 
     @media screen and (max-width: 800px) {
-        justify-content: initial;
+        justify-content: flex-start;
         margin-top: 40px;
     }
 
