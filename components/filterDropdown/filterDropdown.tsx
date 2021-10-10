@@ -6,8 +6,8 @@ export const FilterDropdown: FC = () => {
 
     return (
         <Base>
-            <Dropdown name="Filter by Region">
-                <option value="" disabled> Filter by Region </option>
+            <Dropdown defaultValue="filter by region" name="Filter by Region">
+                <option value="filter by region" disabled hidden> Filter by Region </option>
                 <option value="africa"> Africa </option>
                 <option value="america"> America </option>
                 <option value="asia"> Asia </option>

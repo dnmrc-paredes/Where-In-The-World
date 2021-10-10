@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
+import { useRouter } from "next/router";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 // Constants
 import { apiURL } from "../../constants/url";
@@ -13,13 +15,13 @@ import { ICountry } from "../../types/interfaces";
 import { commaNumber } from "../../utils/numComma";
 
 // Styled Components
-import { RootBase, DetailsBase, DetailsImgContainer, DetailsBaseInfo, DetailsInfo, LeftInfo, RightInfo, TitleTag, InfoTag, BorderBase, BorderItem, BorderCountriesBox } from "../../components/country/countryDetails/countryDetails";
+import { RootBase, DetailsBase, DetailsImgContainer, DetailsBaseInfo, DetailsInfo, LeftInfo, RightInfo, TitleTag, InfoTag, BorderBase, BorderItem, BorderCountriesBox, BackBase, BackBtn } from "../../components/country/countryDetails/countryDetails";
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
     const allCountries = await (await fetch(`${apiURL}/all`)).json() as ICountry[]
     const paths = allCountries.map(item => {
-        return { params: { countryName: item.cca3 } }
+        return { params: { countryName: item.name.common } }
     })
 
     return {
@@ -32,20 +34,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({params}) => {
 
     const { countryName } = params as { countryName: string }
-    const country = await (await fetch(`${apiURL}/alpha/${countryName}`)).json() as ICountry[]
+
+    const country = await (await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)).json() as ICountry[]
+    const borders = country[0].borders
+    const yawa = borders ? borders.map(item => item) : []
+    const bordersCountries = await (await fetch(`${apiURL}/alpha/?codes=${yawa},`)).json() as ICountry[]
 
     return {
         props: {
-            country: country[0]
+            country: country[0],
+            bordersCountries
         },
         revalidate: 5
     }
 
 }
 
-const CountryPage: NextPage<{country: ICountry}> = ({country}) => {
+const CountryPage: NextPage<{country: ICountry, bordersCountries: ICountry[]}> = ({country, bordersCountries}) => {
 
     const { borders, capital, flags, languages, name, population, region, subregion, tld, currencies } = country
+
+    const router = useRouter()
+
+    const goToCountry = (country: ICountry) => {
+        router.push(`/country/${country.name.common}`, undefined, { shallow: false })
+    }
 
     return (
         <RootBase>
@@ -54,10 +67,14 @@ const CountryPage: NextPage<{country: ICountry}> = ({country}) => {
                 <title> Country | {name.common} </title>
             </Head>
 
+            <BackBase>
+                <BackBtn onClick={() => router.back()}> <IoArrowBackOutline size={20} /> Back </BackBtn>
+            </BackBase>
+
             <DetailsBase>
 
                 <DetailsImgContainer>
-                    <Image layout="intrinsic" width={450} height={350} src={flags.svg} alt={`${name.common} flag`} />
+                    <Image layout="intrinsic" placeholder="blur" blurDataURL={flags.svg} width={450} height={350} src={flags.svg} alt={`${name.common} flag`} />
                 </DetailsImgContainer>
 
                 <DetailsBaseInfo>
@@ -74,8 +91,8 @@ const CountryPage: NextPage<{country: ICountry}> = ({country}) => {
                         </LeftInfo>
                         <RightInfo>
                             <InfoTag> <strong> Top Level Domain: </strong> { tld ? tld.map(item => item ) : 'N/A' } </InfoTag>
-                            <InfoTag> <strong> Currencies: </strong> {Object.values(Object.keys(currencies))} {Object.values(languages).at(-1) ? null : ` ,`} </InfoTag>
-                            <InfoTag> <strong> Languages: </strong> {`${Object.values(languages)}`} {Object.values(languages).at(-1) ? null : ` ,`} </InfoTag>                    
+                            <InfoTag> <strong> Currencies: </strong> { currencies ? `${Object.values(Object.keys(currencies))} ${Object.values(languages).at(-1) ? '' : ` ,`}` : 'N/A' } </InfoTag>
+                            <InfoTag> <strong> Languages: </strong> { languages ? `${Object.values(languages)} ${Object.values(languages).at(-1) ? '' : ` ,`} ` : 'N/A' } </InfoTag>                    
                         </RightInfo>
                     </DetailsInfo>
                     <BorderBase>
@@ -83,11 +100,11 @@ const CountryPage: NextPage<{country: ICountry}> = ({country}) => {
                             <strong> Border Countries: </strong>
                         </InfoTag>
                         <BorderCountriesBox>
-                            { borders ? borders.map(item => {
-                                    return <BorderItem key={item}>
-                                        <InfoTag> {item} </InfoTag>
+                            { borders && borders.length > 0 ? bordersCountries.map(item => {
+                                    return <BorderItem onClick={() => goToCountry(item)} key={item.name.common}>
+                                        <InfoTag> {item.name.common} </InfoTag>
                                     </BorderItem>
-                            }) : <InfoTag> N/A </InfoTag> }
+                            }) : <BorderItem> <InfoTag> N/A </InfoTag> </BorderItem> }
                         </BorderCountriesBox>
                     </BorderBase>
                 </DetailsBaseInfo>

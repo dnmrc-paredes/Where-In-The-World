@@ -1,15 +1,19 @@
-import React, { ChangeEvent, FC, useState } from "react";
+import React, { ChangeEvent, FC, useState, Dispatch, SetStateAction } from "react";
 import { IoSearch } from 'react-icons/io5'
-import { useRouter } from "next/router";
 
+// Styled Components
 import { Base, SearchBase, SearchInput, Icon } from "./searchbarStyles";
 
-export const SearchbarComponent: FC = () => {
+// Types
+type Props = {
+    value: string
+    setValue: Dispatch<SetStateAction<string>>
+}
 
-    const [search, setSearch] = useState('')
+export const SearchbarComponent: FC<Props> = ({ value, setValue }) => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value)
+        setValue(e.target.value)
     }
 
     return (
@@ -18,7 +22,7 @@ export const SearchbarComponent: FC = () => {
                 <IoSearch color="gray" size={20} />
             </Icon>
             <SearchBase>
-                <SearchInput onChange={handleChange} value={search} placeholder="Search for a country..." />
+                <SearchInput onChange={handleChange} value={value} placeholder="Search for a country..." />
             </SearchBase>
         </Base>
     )
