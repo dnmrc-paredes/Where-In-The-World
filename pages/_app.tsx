@@ -2,6 +2,9 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 
+// Contexts
+import { AllCountriesProvider } from '../contexts/countriesContext'
+
 // Theme
 import { theme } from '../theme/theme'
 
@@ -10,10 +13,12 @@ import { Header } from '../components/header/header'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Header/>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <AllCountriesProvider>
+      <ThemeProvider theme={theme}>
+        <Header/>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </AllCountriesProvider>
   )
 }
 

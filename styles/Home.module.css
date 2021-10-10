@@ -3,6 +3,7 @@
   display: flex;
   /* background-color: whitesmoke; */
   flex-direction: column;
+
 }
 
 .options {
@@ -17,8 +18,9 @@
   /* padding: 3rem 0; */
   flex: 1;
   display: flex;
-  /* background-color: yellow; */
   flex-flow: row wrap;
+  align-items: center;
+  justify-self: stretch;
   justify-content: center;
 }
 
