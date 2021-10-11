@@ -35,7 +35,15 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
     const { countryName } = params as { countryName: string }
 
-    const country = await (await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)).json() as ICountry[]
+    const response = await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)
+    const country = await response.json() as ICountry[]
+
+    if (response.status === 404) {
+        return {
+            notFound: true
+        }
+    }
+
     const borders = country[0].borders
     const yawa = borders ? borders.map(item => item) : []
     const bordersCountries = await (await fetch(`${apiURL}/alpha/?codes=${yawa},`)).json() as ICountry[]
@@ -45,7 +53,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             country: country[0],
             bordersCountries
         },
-        revalidate: 5
+        revalidate: 5,
     }
 
 }

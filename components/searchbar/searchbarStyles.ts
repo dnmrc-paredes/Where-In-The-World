@@ -8,7 +8,7 @@ export const Base = styled.div`
     justify-content: center;
     height: 40px;
     width: 500px;
-    box-shadow: 1px 1px 10px 0px #E0DCDC;
+    /* box-shadow: 1px 1px 10px 0px #E0DCDC; */
     border-radius: 5px;
     overflow: hidden;
 
@@ -22,7 +22,8 @@ export const Icon= styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    /* background-color: white; */
+    background-color: ${props => props.theme.elements};
     /* background-color: yellow; */
 
     @media screen and (max-width: 800px) {
@@ -50,9 +51,11 @@ export const SearchInput = styled.input`
     flex: 1;
     padding: 0 10px;
     font-weight: 300;
+    background-color: ${props => props.theme.elements};
+    color: ${props => props.theme.txtColor};
 
     &::placeholder {
-        color: gray;
+        color: ${props => props.theme.txtColor};
     }
 
 `

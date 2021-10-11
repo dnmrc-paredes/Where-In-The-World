@@ -7,8 +7,9 @@ export const Card = styled.div`
     /* margin: 40px; */
     margin: 37.5px;
     overflow: hidden;
-    box-shadow: 0px 3px 15px 2px #EDEDED;
-    background-color: ${props => props.theme.bg.lightMode};
+    /* box-shadow: 0px 3px 10px 2px #EDEDED; */
+    background-color: ${props => props.theme.elements};
+    /* background-color: white; */
     cursor: pointer;
 `
 
@@ -16,10 +17,14 @@ export const Title = styled.h1`
     font-size: 20px;
     margin-bottom: 10px;
     word-wrap: break-word;
+    color: ${props => props.theme.txtColor};
 `
 
 export const Detail = styled.p`
     margin: 2px 0;
+    font-size: 14px;
+    font-weight: 300;
+    color: ${props => props.theme.txtColor};
 `
 
 export const ImageHolder = styled.div`
