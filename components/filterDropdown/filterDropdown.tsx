@@ -1,18 +1,29 @@
-import React, { FC } from "react";
+import React, { FC, Dispatch, SetStateAction, ChangeEvent } from "react";
 
+// Styled Components
 import { Base, Dropdown } from "./filterDropdownStyles";
 
-export const FilterDropdown: FC = () => {
+// Types
+type Props = {
+    value: string
+    setValue: Dispatch<SetStateAction<string>>
+}
+
+export const FilterDropdown: FC<Props> = ({ value, setValue }) => {
+
+    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setValue(e.target.value)
+    }
 
     return (
         <Base>
-            <Dropdown defaultValue="filter by region" name="Filter by Region">
+            <Dropdown defaultValue="filter by region" onChange={handleChange} name="Filter by Region">
                 <option value="filter by region" disabled hidden> Filter by Region </option>
-                <option value="africa"> Africa </option>
-                <option value="america"> America </option>
-                <option value="asia"> Asia </option>
-                <option value="europe"> Europe </option>
-                <option value="oceania"> Oceania </option>
+                <option value="Africa"> Africa </option>
+                <option value="Americas"> America </option>
+                <option value="Asia"> Asia </option>
+                <option value="Europe"> Europe </option>
+                <option value="Oceania"> Oceania </option>
             </Dropdown>
         </Base>
     )

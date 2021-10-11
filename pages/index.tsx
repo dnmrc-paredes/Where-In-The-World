@@ -37,14 +37,15 @@ export const getStaticProps: GetStaticProps = async () => {
 const Home: NextPage<Props> = ({ allCountries }) => {
 
   const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState('')
 
   const filterOrSearch = () => {
 
-    if (search) {
-      return allCountries.filter(item => !item.name.common.search(new RegExp(search, 'ig')))
+    if (filter) {
+      return allCountries.filter(item => !item.name.common.search(new RegExp(search, 'ig'))).filter(country => country.region === filter)
     }
 
-    return allCountries
+    return allCountries.filter(item => !item.name.common.search(new RegExp(search, 'ig')))
 
   }
 
@@ -60,7 +61,7 @@ const Home: NextPage<Props> = ({ allCountries }) => {
 
         <div className={styles.options}>
           <SearchbarComponent value={search} setValue={setSearch} />
-          <FilterDropdown/>
+          <FilterDropdown value={filter} setValue={setFilter} />
         </div>
 
         <div className={styles.countries}>
