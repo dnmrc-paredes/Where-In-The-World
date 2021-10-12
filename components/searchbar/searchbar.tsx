@@ -22,7 +22,8 @@ export const SearchbarComponent: FC<Props> = ({ value, setValue }) => {
     return (
         <Base>
             <Icon>
-                <IoSearch color={theme.txtColor} size={20} />
+                {/* <IoSearch color={theme.txtColor} size={20} /> */}
+                <IoSearch color={'black'} size={20} />
             </Icon>
             <SearchBase>
                 <SearchInput onChange={handleChange} value={value} placeholder="Search for a country..." />

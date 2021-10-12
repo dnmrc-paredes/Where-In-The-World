@@ -61,7 +61,6 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 const CountryPage: NextPage<{country: ICountry, bordersCountries: ICountry[]}> = ({country, bordersCountries}) => {
 
     const { borders, capital, flags, languages, name, population, region, subregion, tld, currencies } = country
-
     const router = useRouter()
 
     const goToCountry = (country: ICountry) => {
@@ -70,7 +69,6 @@ const CountryPage: NextPage<{country: ICountry, bordersCountries: ICountry[]}> =
 
     return (
         <RootBase>
-
             <Head>
                 <title> Country | {name.common} </title>
             </Head>
@@ -116,9 +114,8 @@ const CountryPage: NextPage<{country: ICountry, bordersCountries: ICountry[]}> =
                         </BorderCountriesBox>
                     </BorderBase>
                 </DetailsBaseInfo>
-
+                
             </DetailsBase>
-
         </RootBase>
     )
 

@@ -1,25 +1,25 @@
 export interface ICountry {
     name: {
-        common: string,
+        common: string
         official: string
         nativeName: {
-            spa: {
-                official: string,
+            [key: string]: {
+                official: string
                 common: string
             }
         }
     },
-    tld: string[],
-    cca2: string,
-    cca3: string,
-    capital: string[],
-    population: number,
-    region: string,
-    subregion: string,
-    languages: anyKey[],
-    borders: string[],
+    tld: string[]
+    cca2: string
+    cca3: string
+    capital: string[]
+    population: number
+    region: string
+    subregion: string
+    languages: anyKey
+    borders: string[]
     flags: {
-        svg: string,
+        svg: string
         png: string
     }
     currencies: {
@@ -27,7 +27,7 @@ export interface ICountry {
             name: string
             symbol: string
         }
-    }[]
+    }
 }
 
 export type anyKey = {

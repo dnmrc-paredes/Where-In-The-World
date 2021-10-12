@@ -58,7 +58,7 @@ const Home: NextPage<Props> = ({ allCountries }) => {
 
         <Options>
           <SearchbarComponent value={search} setValue={setSearch} />
-          <FilterDropdown value={filter} setValue={setFilter} />
+          <FilterDropdown setValue={setFilter} />
         </Options>
 
         <Countries>

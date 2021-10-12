@@ -3,9 +3,6 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import { useState, useEffect } from 'react'
 
-// Contexts
-import { AllCountriesProvider } from '../contexts/countriesContext'
-
 // Theme
 import { darkMode, lightMode } from '../theme/theme'
 
@@ -30,12 +27,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <AllCountriesProvider>
-      <ThemeProvider theme={currTheme === 'light' ? lightMode : darkMode}>
-        <Header value={currTheme} changeTheme={setCurrTheme}/>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </AllCountriesProvider>
+    <ThemeProvider theme={currTheme === 'light' ? lightMode : darkMode}>
+      <Header value={currTheme} changeTheme={setCurrTheme}/>
+      <Component {...pageProps} />
+    </ThemeProvider>
   )
 
 }

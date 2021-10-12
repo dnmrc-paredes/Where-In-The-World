@@ -5,11 +5,10 @@ import { Base, Dropdown } from "./filterDropdownStyles";
 
 // Types
 type Props = {
-    value: string
     setValue: Dispatch<SetStateAction<string>>
 }
 
-export const FilterDropdown: FC<Props> = ({ value, setValue }) => {
+export const FilterDropdown: FC<Props> = ({ setValue }) => {
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setValue(e.target.value)
