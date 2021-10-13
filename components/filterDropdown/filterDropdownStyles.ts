@@ -7,8 +7,8 @@ export const Base = styled.div`
     padding: 0 10px;
     /* background-color: red; */
     width: 150px;
-    background-color: white;
-    box-shadow: 1px 1px 10px 0px #E0DCDC;
+    background-color: ${props => props.theme.elements};
+    /* box-shadow: 1px 1px 10px 0px #E0DCDC; */
     border-radius: 5px;
 
     @media screen and (max-width: 800px) {
@@ -26,4 +26,6 @@ export const Dropdown = styled.select`
     overflow: hidden;
     outline: none;
     border: none;
+    background-color: ${props => props.theme.elements};
+    color: ${props => props.theme.txtColor};
 `

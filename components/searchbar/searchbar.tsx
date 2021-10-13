@@ -1,5 +1,6 @@
-import React, { ChangeEvent, FC, useState, Dispatch, SetStateAction } from "react";
+import React, { ChangeEvent, FC, Dispatch, SetStateAction } from "react";
 import { IoSearch } from 'react-icons/io5'
+import { useTheme } from "styled-components";
 
 // Styled Components
 import { Base, SearchBase, SearchInput, Icon } from "./searchbarStyles";
@@ -12,6 +13,8 @@ type Props = {
 
 export const SearchbarComponent: FC<Props> = ({ value, setValue }) => {
 
+    const theme = useTheme() as { txtColor: string }
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }
@@ -19,7 +22,7 @@ export const SearchbarComponent: FC<Props> = ({ value, setValue }) => {
     return (
         <Base>
             <Icon>
-                <IoSearch color="gray" size={20} />
+                <IoSearch color={theme.txtColor} size={20} />
             </Icon>
             <SearchBase>
                 <SearchInput onChange={handleChange} value={value} placeholder="Search for a country..." />

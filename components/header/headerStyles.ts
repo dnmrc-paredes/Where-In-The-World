@@ -5,6 +5,7 @@ export const Navbar = styled.nav`
     height: 70px;
     display: flex;
     box-shadow: 0px 3px 2px 0px #EBEBEB;
+    background-color: ${props => props.theme.elements};
 
     @media screen and (max-width: 550px) {
         height: 100px;
@@ -16,6 +17,7 @@ export const NavTitle = styled.div`
     /* background-color: blue; */
     display: flex;
     align-items: center;
+    color: ${props => props.theme.txtColor};
 `
 
 export const Title = styled.h2`
@@ -23,6 +25,7 @@ export const Title = styled.h2`
     margin-left: 3vw;
     font-weight: 800;
     cursor: pointer;
+    color: ${props => props.theme.txtColor};
 
     @media screen and (max-width: 550px) {
         font-size: 15px;
@@ -43,4 +46,5 @@ export const ThemeText = styled.p`
     margin-right: 3vw;
     margin-left: 5px;
     font-weight: 800;
+    color: ${props => props.theme.txtColor};
 `

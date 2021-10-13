@@ -32,11 +32,11 @@ export const CountryCard: FC<Props> = (props) => {
                 <CountryInfo>
                     <CountryDetails>
                         <Title> {name.length < 15 ? name : `${name.substring(0,15)}...`} </Title>
-                        <Detail> Population: {commaNumber(population)} </Detail>
-                        <Detail> Region: {region} </Detail>
+                        <Detail> <strong> Population: </strong> {commaNumber(population)} </Detail>
+                        <Detail> <strong> Region: </strong> {region} </Detail>
                         { capital ? 
-                        <Detail> Capital: {capital[0]} </Detail>
-                        : <Detail> Capital: N/A </Detail> }
+                        <Detail> <strong> Capital: </strong> {capital[0]} </Detail>
+                        : <Detail> <strong> Capital: </strong> N/A </Detail> }
                     </CountryDetails>
                 </CountryInfo>
             </Card>

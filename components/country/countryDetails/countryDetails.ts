@@ -4,16 +4,19 @@ export const TitleTag = styled.h1`
     margin-bottom: 18px;
     font-weight: 800;
     font-size: 30px;
+    color: ${props => props.theme.txtColor};
 `
 
 export const InfoTag = styled.p`
     margin: 7px 0;
+    color: ${props => props.theme.txtColor};
 `
 
 export const RootBase = styled.main`
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: ${props => props.theme.bg};
 `
 
 export const DetailsBase = styled.div`
@@ -96,14 +99,15 @@ export const BorderCountriesBox = styled.div`
 `
 
 export const BorderItem = styled.div`
-    /* background-color: blue; */
+    /* background-color: ${props => props.theme.bg}; */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 25px;
     width: max-content;
     padding: 0 0.5rem;
-    box-shadow: 0px 1px 1px 2px #E0E0E0;
+    /* box-shadow: 0px 1px 1px 2px #E0E0E0; */
+    background-color: ${props => props.theme.elements};
     margin: 4px 4px;
     border-radius: 3px;
     font-weight: 300;
@@ -121,17 +125,19 @@ export const BackBtn = styled.button`
     border: none;
     outline: none;
     border-radius: 5px;
-    box-shadow: 0px 1px 1px 2px #E0E0E0;
+    /* box-shadow: 0px 1px 1px 2px #E0E0E0; */
     cursor: pointer;
     width: 100px;
     display: flex;
     justify-content: center;
     height: 30px;
     align-items: center;
-    background-color: white;
+    background-color: ${props => props.theme.elements};
+    color: ${props => props.theme.txtColor};
     /* margin: 0 120px; */
     margin: 0 8vw;
     /* margin: 0 200px; */
+    /* color: ${props => props.theme.bg}; */
 
     @media screen and (max-width: 700px) {
         margin: 0 40px;
