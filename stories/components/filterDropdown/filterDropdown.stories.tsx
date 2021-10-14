@@ -11,7 +11,7 @@ export default {
     component: FilterDropdown
 } as Meta
 
-export const TheFilterDropdown = () => {
+export const Filter = () => {
 
     const [value, setValue] = useState('')
 

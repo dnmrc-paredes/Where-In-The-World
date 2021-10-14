@@ -12,7 +12,7 @@ export default {
     component: CountryCard
 } as Meta
 
-export const TheCountryCard = () => {
+export const Card = () => {
 
     return (
         <CountryCard

@@ -12,7 +12,7 @@ export default {
     component: SearchbarComponent
 } as Meta
 
-export const TheSearchBar = () => {
+export const SearchBar = () => {
 
     const theme = useTheme() as { txtColor: string }
     const [value, setValue] = useState('')

@@ -4,19 +4,19 @@ import { Meta } from '@storybook/react'
 import '../../../styles/globals.css'
 
 // Component
-import { Header } from '../../../components/header/header'
+import { Header as HeaderComponent } from '../../../components/header/header'
 
 export default {
     title: 'Components/Header',
-    component: Header
+    component: HeaderComponent
 } as Meta
 
-export const TheHeader = () => {
+export const Navbar = () => {
 
     const [value, setValue] = useState<'light' | 'dark' | undefined>('light')
 
     return (
-        <Header changeTheme={setValue} value={value}> </Header>
+        <HeaderComponent changeTheme={setValue} value={value}> </HeaderComponent>
     )
 
 }

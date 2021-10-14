@@ -2,14 +2,14 @@ import React from "react";
 import { Meta } from '@storybook/react'
 
 // Component
-import CountryDetails from '../../../../pages/country/[countryName]'
+import CountryDetailsComponent from '../../../../pages/country/[countryName]'
 
 // Sample Country
 import { sampleCountry } from "../../../../constants/sampleCountry";
 
 export default {
-    title: 'Components/CountryDetails',
-    component: CountryDetails
+    title: 'Components/Country',
+    component: CountryDetailsComponent
 } as Meta
 
-export const TheCountryDetails = () => <CountryDetails country={sampleCountry} bordersCountries={[sampleCountry]}/>
+export const CountryDetails = () => <CountryDetailsComponent country={sampleCountry} bordersCountries={[sampleCountry]}/>
