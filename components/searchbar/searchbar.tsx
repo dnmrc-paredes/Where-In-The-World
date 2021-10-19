@@ -1,9 +1,7 @@
 import React, { ChangeEvent, FC, Dispatch, SetStateAction } from "react";
 import { IoSearch } from "react-icons/io5";
 import { useTheme } from "styled-components";
-
-// Styled Components
-import { Base, SearchBase, SearchInput, Icon } from "./searchbarStyles";
+import * as S from "./searchbarStyles";
 
 // Types
 type Props = {
@@ -20,18 +18,18 @@ export const SearchbarComponent: FC<Props> = ({ value, setValue }) => {
     };
 
     return (
-        <Base>
-            <Icon>
+        <S.Base>
+            <S.Icon>
                 {/* <IoSearch color={theme.txtColor} size={20} /> */}
                 <IoSearch color='gray' size={20} />
-            </Icon>
-            <SearchBase>
-                <SearchInput
+            </S.Icon>
+            <S.SearchBase>
+                <S.SearchInput
                     onChange={handleChange}
                     value={value}
                     placeholder="Search for a country..."
                 />
-            </SearchBase>
-        </Base>
+            </S.SearchBase>
+        </S.Base>
     );
 };

@@ -23,12 +23,6 @@ export const Detail = styled.p(({theme}) => ({
     color: theme.txtColor,
 }));
 
-export const ImageHolder = styled.div`
-    flex: 1;
-    display: flex;
-    height: 150px;
-`;
-
 export const CountryInfo = styled.section`
     flex: 2;
     display: flex;
