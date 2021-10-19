@@ -1,11 +1,9 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-// Utils
+import * as S from "./cardStyles";
 import { commaNumber } from "../../../utils/numComma";
 
-// Types
 type Props = {
     name: string;
     population: number;
@@ -15,23 +13,13 @@ type Props = {
     cca3: string;
 };
 
-// Styled Components
-import {
-    Card,
-    CountryDetails,
-    CountryInfo,
-    Title,
-    ImageHolder,
-    Detail,
-} from "./cardStyles";
-
 export const CountryCard: FC<Props> = (props) => {
     const { name, population, region, capital, img } = props;
 
     return (
         <Link passHref href={`/country/${name}`}>
-            <Card data-testid={`country${name}`} >
-                <ImageHolder>
+            <S.Card data-testid={`country${name}`} >
+                <S.ImageHolder>
                     <Image
                         placeholder="blur"
                         blurDataURL={img}
@@ -40,30 +28,30 @@ export const CountryCard: FC<Props> = (props) => {
                         alt={name}
                         src={img}
                     />
-                </ImageHolder>
-                <CountryInfo>
-                    <CountryDetails>
-                        <Title data-testid="countryName">
+                </S.ImageHolder>
+                <S.CountryInfo>
+                    <S.CountryDetails>
+                        <S.Title data-testid="countryName">
                             {name.length < 15 ? name : `${name.substring(0, 15)}...`}
-                        </Title>
-                        <Detail data-testid="countryPopulation">
+                        </S.Title>
+                        <S.Detail data-testid="countryPopulation">
                             <strong> Population: </strong> {commaNumber(population)}
-                        </Detail>
-                        <Detail data-testid="countryRegion">
+                        </S.Detail>
+                        <S.Detail data-testid="countryRegion">
                             <strong> Region: </strong> {region}
-                        </Detail>
+                        </S.Detail>
                         {capital ? (
-                            <Detail data-testid="countryCapital">
+                            <S.Detail data-testid="countryCapital">
                                 <strong> Capital: </strong> {capital[0]}
-                            </Detail>
+                            </S.Detail>
                         ) : (
-                            <Detail data-testid="countryCapitalNone">
+                            <S.Detail data-testid="countryCapitalNone">
                                 <strong> Capital: </strong> N/A
-                            </Detail>
+                            </S.Detail>
                         )}
-                    </CountryDetails>
-                </CountryInfo>
-            </Card>
+                    </S.CountryDetails>
+                </S.CountryInfo>
+            </S.Card>
         </Link>
     );
 };
