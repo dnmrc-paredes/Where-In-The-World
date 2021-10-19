@@ -19,7 +19,6 @@ export const Card: FC<Props> = (props) => {
     return (
         <Link passHref href={`/country/${name}`}>
             <S.Card data-testid={`country${name}`} >
-                <S.ImageHolder>
                     <Image
                         placeholder="blur"
                         blurDataURL={img}
@@ -28,7 +27,6 @@ export const Card: FC<Props> = (props) => {
                         alt={name}
                         src={img}
                     />
-                </S.ImageHolder>
                 <S.CountryInfo>
                     <S.CountryDetails>
                         <S.Title data-testid="countryName">
