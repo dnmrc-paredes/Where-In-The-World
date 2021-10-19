@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
-import {
-  NoResultHeading,
-  NoResultsBase,
-  Base,
-  Options,
-  Countries,
-} from "../styles/rootPageStyles";
+import * as S from "../styles/rootPageStyles";
 import { apiURL } from "../constants/url";
 import { CountryCard } from "../components/country/card/card";
 import { SearchbarComponent } from "../components/searchbar/searchbar";
@@ -52,17 +46,17 @@ const Home: NextPage<Props> = ({ allCountries }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Base>
-        <Options>
+      <S.Base>
+        <S.Options>
           <SearchbarComponent value={search} setValue={setSearch} />
           <FilterDropdown setValue={setFilter} />
-        </Options>
+        </S.Options>
 
-        <Countries>
+        <S.Countries>
           {filterOrSearch().length <= 0 ? (
-            <NoResultsBase>
-              <NoResultHeading> No Countries found </NoResultHeading>
-            </NoResultsBase>
+            <S.NoResultsBase>
+              <S.NoResultHeading> No Countries found </S.NoResultHeading>
+            </S.NoResultsBase>
           ) : (
             filterOrSearch().map((country) => {
               return (
@@ -78,8 +72,8 @@ const Home: NextPage<Props> = ({ allCountries }) => {
               );
             })
           )}
-        </Countries>
-      </Base>
+        </S.Countries>
+      </S.Base>
     </div>
   );
 };
