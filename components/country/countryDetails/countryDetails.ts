@@ -46,7 +46,14 @@ export const DetailsBaseInfo = styled.section`
 
 export const DetailsInfo = styled.div`
     display: flex;
-
+    > span {
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .right {
+        flex: 1;
+    }
     @media screen and (max-width: 700px) {
         flex-direction: column;
     }

@@ -16,7 +16,7 @@ export interface ICountry {
     population: number,
     region: string,
     subregion: string,
-    languages: anyKey[],
+    languages: {},
     borders: string[],
     flags: {
         svg: string,
