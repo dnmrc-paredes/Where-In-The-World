@@ -13,7 +13,7 @@ type Props = {
     cca3: string;
 };
 
-export const CountryCard: FC<Props> = (props) => {
+export const Card: FC<Props> = (props) => {
     const { name, population, region, capital, img } = props;
 
     return (

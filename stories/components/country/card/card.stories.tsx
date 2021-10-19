@@ -2,20 +2,20 @@ import React from "react";
 import { Meta } from '@storybook/react'
 
 // Component
-import { CountryCard } from "../../../../components/country/card/card";
+import { Card } from "../../../../components/country/card/card";
 
 // Sample Country
 import { sampleCountry } from "../../../../constants/sampleCountry";
 
 export default {
     title: 'Components/Country',
-    component: CountryCard
+    component: Card
 } as Meta
 
 export const Card = () => {
 
     return (
-        <CountryCard
+        <Card
             name={sampleCountry.name.common}
             capital={sampleCountry.capital}
             cca3={sampleCountry.cca3}
@@ -23,7 +23,7 @@ export const Card = () => {
             population={sampleCountry.population}
             region={sampleCountry.region}
         >
-        </CountryCard>
+        </Card>
     )
 
 }
