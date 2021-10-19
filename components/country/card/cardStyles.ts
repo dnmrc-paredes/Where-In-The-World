@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Card = styled.div(({theme}) => ({
+export const Card = styled.div(({ theme }) => ({
     height: "330px",
     width: "250px",
     borderRadius: "5px",
@@ -10,13 +10,13 @@ export const Card = styled.div(({theme}) => ({
     cursor: "pointer",
 }));
 
-export const Title = styled.h1(({theme}) => ({
+export const Title = styled.h1(({ theme }) => ({
     fontSize: "20px",
     marginBottom: "10px",
     color: theme.txtColor,
 }));
 
-export const Detail = styled.p(({theme}) => ({
+export const Detail = styled.p(({ theme }) => ({
     margin: "2px 0",
     fontSize: "14px",
     fontWeight: 300,
