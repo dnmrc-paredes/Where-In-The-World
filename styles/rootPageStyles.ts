@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Base = styled.main`
     flex: 1;
     display: flex;
-    background-color: ${props => props.theme.bg};
+    background-color: ${({theme}) => theme.bg};
     flex-direction: column;
     min-height: 100vh;
 `
@@ -36,5 +36,5 @@ export const NoResultsBase = styled.div`
 `
 
 export const NoResultHeading = styled.h2`
-    color: ${props => props.theme.txtColor};
+    color: ${({theme}) => theme.txtColor};
 `

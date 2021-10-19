@@ -18,7 +18,6 @@ export const Icon = styled.div(({ theme }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.elements,
-
     '@media screen and (max-width: 800px)': {
         flex: 2.5
     }
@@ -41,7 +40,6 @@ export const SearchInput = styled.input(({ theme }) => ({
     fontWeight: 300,
     backgroundColor: theme.elements,
     color: theme.txtColor,
-
     '&::placeholder': {
         color: theme.txtColor
     }

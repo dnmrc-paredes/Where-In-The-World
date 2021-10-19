@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Base = styled.div`
-    background-color: ${props => props.theme.bg};
+    background-color: ${({ theme }) => theme.bg};
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@ export const Base = styled.div`
 `
 
 export const ErrorTag = styled.h1`
-    color: ${props => props.theme.txtColor};
+    color: ${({ theme }) => theme.txtColor};
     text-align: center;
 
     @media screen and (max-width: 500px) {
@@ -19,8 +19,8 @@ export const ErrorTag = styled.h1`
 `
 
 export const GoBack = styled.button`
-    background-color: ${props => props.theme.elements};
-    color: ${props => props.theme.txtColor};
+    background-color: ${({ theme }) => theme.elements};
+    color: ${({ theme }) => theme.txtColor};
     border: none;
     outline: none;
     margin-top: 10px;
