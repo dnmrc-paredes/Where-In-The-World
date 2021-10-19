@@ -1,9 +1,5 @@
 import { NextApiHandler } from 'next'
-
-// Constants
 import { apiURL } from '../../constants/url'
-
-// Types
 import { ICountry } from '../../types/interfaces'
 
 const allCountries: NextApiHandler = async (req, res) => {
