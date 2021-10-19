@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from '@testing-library/react'
-import { CountryCard } from "../../components/country/card/card";
+import { Card } from "../../components/country/card/card";
 
 // Utils
 import { commaNumber } from "../../utils/numComma";
@@ -12,7 +12,7 @@ describe('The country card', () => {
 
     it('Will display all the card details', () => {
 
-        const { getByTestId } = render(<CountryCard
+        const { getByTestId } = render(<Card
             name={sampleCountry.name.common}
             capital={sampleCountry.capital}
             cca3={sampleCountry.cca3}

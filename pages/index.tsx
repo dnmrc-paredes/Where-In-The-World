@@ -3,7 +3,7 @@ import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import * as S from "../styles/rootPageStyles";
 import { apiURL } from "../constants/url";
-import { CountryCard } from "../components/country/card/card";
+import { Card } from "../components/country/card/card";
 import { SearchbarComponent } from "../components/searchbar/searchbar";
 import { FilterDropdown } from "../components/filterDropdown/filterDropdown";
 import { ICountry } from "../types/interfaces";
@@ -59,7 +59,7 @@ const Home: NextPage<Props> = ({ allCountries }) => {
           ) : (
             filterOrSearch().map((country) => {
               return (
-                <CountryCard
+                <Card
                   key={country.name.common}
                   name={country.name.common}
                   population={country.population}
