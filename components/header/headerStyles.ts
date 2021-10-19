@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Navbar = styled.nav(({theme}) => ({
+export const Navbar = styled.nav(({ theme }) => ({
     padding: '1rem',
     height: '70px',
     display: 'flex',
@@ -18,7 +18,7 @@ export const NavTitle = styled.div`
     align-items: center;
 `;
 
-export const Title = styled.h2(({theme}) => ({
+export const Title = styled.h2(({ theme }) => ({
     color: theme.txtColor,
     marginLeft: '3vw',
     fontWeight: 800,
@@ -37,7 +37,7 @@ export const ToggleTheme = styled.div`
     cursor: pointer;
 `;
 
-export const ThemeText = styled.p(({theme}) => ({
+export const ThemeText = styled.p(({ theme }) => ({
     fontWeight: 800,
     marginRight: '3vw',
     marginLeft: '5px',

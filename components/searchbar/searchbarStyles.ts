@@ -12,7 +12,7 @@ export const Base = styled.div`
     }
 `;
 
-export const Icon = styled.div(({theme}) => ({
+export const Icon = styled.div(({ theme }) => ({
     flex: 1,
     display: 'flex',
     justifyContent: 'center',
@@ -33,7 +33,7 @@ export const SearchBase = styled.div`
     }
 `;
 
-export const SearchInput = styled.input(({theme}) => ({
+export const SearchInput = styled.input(({ theme }) => ({
     border: 'none',
     outline: 'none',
     flex: 1,

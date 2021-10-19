@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Base = styled.div(({theme}) => ({
+export const Base = styled.div(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -15,7 +15,7 @@ export const Base = styled.div(({theme}) => ({
     }
 }))
 
-export const Dropdown = styled.select(({theme}) => ({
+export const Dropdown = styled.select(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     height: '40px',
