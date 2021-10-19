@@ -166,7 +166,7 @@ const CountryPage: NextPage<{
                             </InfoTag>
                             <InfoTag data-testid="curr">
                                 <strong> Currencies: </strong>
-                                {currencies
+                                {/* {currencies
                                     ? `${Object.values(
                                           Object.keys(currencies)
                                       )}${
@@ -174,17 +174,17 @@ const CountryPage: NextPage<{
                                               ? ""
                                               : `,`
                                       }`
-                                    : "N/A"}
+                                    : "N/A"} */}
                             </InfoTag>
                             <InfoTag data-testid="lang">
                                 <strong> Languages: </strong>{" "}
-                                {languages
+                                {/* {languages
                                     ? `${Object.values(languages)}${
                                           Object.values(languages).at(-1)
                                               ? ""
                                               : `,`
                                       }`
-                                    : "N/A"}
+                                    : "N/A"} */}
                             </InfoTag>
                         </RightInfo>
                     </DetailsInfo>
