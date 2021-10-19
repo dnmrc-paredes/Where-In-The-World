@@ -32,7 +32,6 @@ const Home: NextPage<Props> = ({ allCountries }) => {
         .filter((item) => !item.name.common.search(new RegExp(search, "ig")))
         .filter((country) => country.region === filter);
     }
-
     return allCountries.filter(
       (item) => !item.name.common.search(new RegExp(search, "ig"))
     );
