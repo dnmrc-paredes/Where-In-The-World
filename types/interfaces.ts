@@ -2,12 +2,7 @@ export interface ICountry {
     name: {
         common: string;
         official: string;
-        nativeName: {
-            [key: string]: {
-                official: string;
-                common: string;
-            };
-        };
+        nativeName: {};
     };
     tld: string[];
     cca2: string;
@@ -16,20 +11,11 @@ export interface ICountry {
     population: number;
     region: string;
     subregion: string;
-    languages: anyKey;
+    languages: {};
     borders: string[];
     flags: {
         svg: string;
         png: string;
     };
-    currencies: {
-        [key: string]: {
-            name: string;
-            symbol: string;
-        };
-    };
+    currencies: {};
 }
-
-export type anyKey = {
-    [key: string]: string;
-};
