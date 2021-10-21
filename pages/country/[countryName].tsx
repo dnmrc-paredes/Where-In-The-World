@@ -76,8 +76,7 @@ const CountryPage: NextPage<{
 
       <S.BackBase>
         <S.BackBtn onClick={() => router.back()}>
-          {" "}
-          <IoArrowBackOutline size={20} /> Back{" "}
+          <IoArrowBackOutline size={20} /> Back
         </S.BackBtn>
       </S.BackBase>
 
@@ -99,27 +98,22 @@ const CountryPage: NextPage<{
           <S.DetailsInfo>
             <S.LeftInfo>
               <S.InfoTag>
-                {" "}
-                <strong> Native Name: </strong> {country.name.official}{" "}
+                <strong> Native Name: </strong> {country.name.official}
               </S.InfoTag>
               <S.InfoTag>
-                {" "}
-                <strong> Population: </strong> {commaNumber(population)}{" "}
+                <strong> Population: </strong> {commaNumber(population)}
               </S.InfoTag>
               <S.InfoTag>
-                {" "}
-                <strong> Region: </strong> {region}{" "}
+                <strong> Region: </strong> {region}
               </S.InfoTag>
               <S.InfoTag>
-                {" "}
-                <strong> Sub Region: </strong> {subregion}{" "}
+                <strong> Sub Region: </strong> {subregion}
               </S.InfoTag>
               {capital ? (
                 capital.map((item) => {
                   return (
                     <S.InfoTag key={item}>
-                      {" "}
-                      <strong> Capital: </strong> {item}{" "}
+                      <strong> Capital: </strong> {item}
                     </S.InfoTag>
                   );
                 })
@@ -129,19 +123,16 @@ const CountryPage: NextPage<{
             </S.LeftInfo>
             <S.RightInfo>
               <S.InfoTag>
-                {" "}
-                <strong> Top Level Domain: </strong>{" "}
-                {tld ? tld : "N/A"}{" "}
+                <strong> Top Level Domain: </strong>
+                {tld ? tld : "N/A"}
               </S.InfoTag>
               <S.InfoTag>
-                {" "}
-                <strong> Currencies: </strong>{" "}
-                {currencies ? Object.keys(currencies) : 'N/A'}
+                <strong> Currencies: </strong>
+                {currencies ? Object.keys(currencies) : "N/A"}
               </S.InfoTag>
               <S.InfoTag>
-                {" "}
-                <strong> Languages: </strong>{" "}
-                {languages ? Object.values(languages).join(', ') : 'N/A'}
+                <strong> Languages: </strong>
+                {languages ? Object.values(languages).join(", ") : "N/A"}
               </S.InfoTag>
             </S.RightInfo>
           </S.DetailsInfo>
@@ -163,8 +154,7 @@ const CountryPage: NextPage<{
                 })
               ) : (
                 <S.BorderItem>
-                  {" "}
-                  <S.InfoTag> N/A </S.InfoTag>{" "}
+                  <S.InfoTag> N/A </S.InfoTag>
                 </S.BorderItem>
               )}
             </S.BorderCountriesBox>
