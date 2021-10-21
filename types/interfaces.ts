@@ -16,20 +16,12 @@ export interface ICountry {
     population: number,
     region: string,
     subregion: string,
-    languages: anyKey[],
+    languages: {},
     borders: string[],
     flags: {
         svg: string,
         png: string
     }
-    currencies: {
-        [key: string]: {
-            name: string
-            symbol: string
-        }
-    }[]
+    currencies: {}
 }
 
-export type anyKey = {
-    [key: string]: string
-}

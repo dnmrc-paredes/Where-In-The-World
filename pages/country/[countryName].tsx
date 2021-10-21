@@ -1,119 +1,178 @@
 import React from "react";
 import Head from "next/head";
-import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
-import Image from 'next/image'
+import { NextPage, GetStaticPaths, GetStaticProps } from "next";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { IoArrowBackOutline } from "react-icons/io5";
-
-// Constants
 import { apiURL } from "../../constants/url";
-
-// Types
 import { ICountry } from "../../types/interfaces";
-
-// Utils
 import { commaNumber } from "../../utils/numComma";
-
-// Styled Components
-import { RootBase, DetailsBase, DetailsImgContainer, DetailsBaseInfo, DetailsInfo, LeftInfo, RightInfo, TitleTag, InfoTag, BorderBase, BorderItem, BorderCountriesBox, BackBase, BackBtn } from "../../components/country/countryDetails/countryDetails";
+import * as S from "../../components/country/countryDetails/countryDetails";
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const allCountries = (await (
+    await fetch(`${apiURL}/all`)
+  ).json()) as ICountry[];
+  const paths = allCountries.map((item) => {
+    return { params: { countryName: item.name.common } };
+  });
 
-    const allCountries = await (await fetch(`${apiURL}/all`)).json() as ICountry[]
-    const paths = allCountries.map(item => {
-        return { params: { countryName: item.name.common } }
-    })
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
 
-    return {
-        paths,
-        fallback: 'blocking'
-    }
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { countryName } = params as { countryName: string };
 
-}
+  const country = (await (
+    await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)
+  ).json()) as ICountry[];
+  const borders = country[0].borders;
+  const yawa = borders ? borders.map((item) => item) : [];
+  const bordersCountries = (await (
+    await fetch(`${apiURL}/alpha/?codes=${yawa},`)
+  ).json()) as ICountry[];
+  return {
+    props: {
+      country: country[0],
+      bordersCountries,
+    },
+    revalidate: 5,
+  };
+};
 
-export const getStaticProps: GetStaticProps = async ({params}) => {
+const CountryPage: NextPage<{
+  country: ICountry;
+  bordersCountries: ICountry[];
+}> = ({ country, bordersCountries }) => {
+  const {
+    borders,
+    capital,
+    flags,
+    languages,
+    name,
+    population,
+    region,
+    subregion,
+    tld,
+    currencies,
+  } = country;
 
-    const { countryName } = params as { countryName: string }
+  const router = useRouter();
 
-    const country = await (await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)).json() as ICountry[]
-    const borders = country[0].borders
-    const yawa = borders ? borders.map(item => item) : []
-    const bordersCountries = await (await fetch(`${apiURL}/alpha/?codes=${yawa},`)).json() as ICountry[]
+  const goToCountry = (country: ICountry) => {
+    router.push(`/country/${country.name.common}`, undefined, {
+      shallow: false,
+    });
+  };
 
-    return {
-        props: {
-            country: country[0],
-            bordersCountries
-        },
-        revalidate: 5
-    }
+  return (
+    <S.RootBase>
+      <Head>
+        <title> Country | {name.common} </title>
+      </Head>
 
-}
+      <S.BackBase>
+        <S.BackBtn onClick={() => router.back()}>
+          {" "}
+          <IoArrowBackOutline size={20} /> Back{" "}
+        </S.BackBtn>
+      </S.BackBase>
 
-const CountryPage: NextPage<{country: ICountry, bordersCountries: ICountry[]}> = ({country, bordersCountries}) => {
+      <S.DetailsBase>
+        <S.DetailsImgContainer>
+          <Image
+            layout="intrinsic"
+            placeholder="blur"
+            blurDataURL={flags.svg}
+            width={450}
+            height={350}
+            src={flags.svg}
+            alt={`${name.common} flag`}
+          />
+        </S.DetailsImgContainer>
 
-    const { borders, capital, flags, languages, name, population, region, subregion, tld, currencies } = country
+        <S.DetailsBaseInfo>
+          <S.TitleTag> {country.name.common} </S.TitleTag>
+          <S.DetailsInfo>
+            <S.LeftInfo>
+              <S.InfoTag>
+                {" "}
+                <strong> Native Name: </strong> {country.name.official}{" "}
+              </S.InfoTag>
+              <S.InfoTag>
+                {" "}
+                <strong> Population: </strong> {commaNumber(population)}{" "}
+              </S.InfoTag>
+              <S.InfoTag>
+                {" "}
+                <strong> Region: </strong> {region}{" "}
+              </S.InfoTag>
+              <S.InfoTag>
+                {" "}
+                <strong> Sub Region: </strong> {subregion}{" "}
+              </S.InfoTag>
+              {capital ? (
+                capital.map((item) => {
+                  return (
+                    <S.InfoTag key={item}>
+                      {" "}
+                      <strong> Capital: </strong> {item}{" "}
+                    </S.InfoTag>
+                  );
+                })
+              ) : (
+                <S.InfoTag> N/A </S.InfoTag>
+              )}
+            </S.LeftInfo>
+            <S.RightInfo>
+              <S.InfoTag>
+                {" "}
+                <strong> Top Level Domain: </strong>{" "}
+                {tld ? tld : "N/A"}{" "}
+              </S.InfoTag>
+              <S.InfoTag>
+                {" "}
+                <strong> Currencies: </strong>{" "}
+                {currencies ? Object.keys(currencies) : 'N/A'}
+              </S.InfoTag>
+              <S.InfoTag>
+                {" "}
+                <strong> Languages: </strong>{" "}
+                {languages ? Object.values(languages).join(', ') : 'N/A'}
+              </S.InfoTag>
+            </S.RightInfo>
+          </S.DetailsInfo>
+          <S.BorderBase>
+            <S.InfoTag>
+              <strong> Border Countries: </strong>
+            </S.InfoTag>
+            <S.BorderCountriesBox>
+              {borders && borders.length > 0 ? (
+                bordersCountries.map((item) => {
+                  return (
+                    <S.BorderItem
+                      onClick={() => goToCountry(item)}
+                      key={item.name.common}
+                    >
+                      <S.InfoTag> {item.name.common} </S.InfoTag>
+                    </S.BorderItem>
+                  );
+                })
+              ) : (
+                <S.BorderItem>
+                  {" "}
+                  <S.InfoTag> N/A </S.InfoTag>{" "}
+                </S.BorderItem>
+              )}
+            </S.BorderCountriesBox>
+          </S.BorderBase>
+        </S.DetailsBaseInfo>
+      </S.DetailsBase>
+    </S.RootBase>
+  );
+};
 
-    const router = useRouter()
-
-    const goToCountry = (country: ICountry) => {
-        router.push(`/country/${country.name.common}`, undefined, { shallow: false })
-    }
-
-    return (
-        <RootBase>
-
-            <Head>
-                <title> Country | {name.common} </title>
-            </Head>
-
-            <BackBase>
-                <BackBtn onClick={() => router.back()}> <IoArrowBackOutline size={20} /> Back </BackBtn>
-            </BackBase>
-
-            <DetailsBase>
-
-                <DetailsImgContainer>
-                    <Image layout="intrinsic" placeholder="blur" blurDataURL={flags.svg} width={450} height={350} src={flags.svg} alt={`${name.common} flag`} />
-                </DetailsImgContainer>
-
-                <DetailsBaseInfo>
-                    <TitleTag> {country.name.common} </TitleTag>
-                    <DetailsInfo>
-                        <LeftInfo>
-                            <InfoTag> <strong> Native Name: </strong> {country.name.official} </InfoTag>
-                            <InfoTag> <strong> Population: </strong> {commaNumber(population)} </InfoTag>
-                            <InfoTag> <strong> Region: </strong> {region} </InfoTag>
-                            <InfoTag> <strong> Sub Region: </strong> {subregion} </InfoTag>
-                            { capital ? capital.map(item => {
-                                return <InfoTag key={item}> <strong> Capital: </strong> {item} </InfoTag>
-                            }) : <InfoTag> N/A </InfoTag> }
-                        </LeftInfo>
-                        <RightInfo>
-                            <InfoTag> <strong> Top Level Domain: </strong> { tld ? tld.map(item => item ) : 'N/A' } </InfoTag>
-                            <InfoTag> <strong> Currencies: </strong> { currencies ? `${Object.values(Object.keys(currencies))} ${Object.values(languages).at(-1) ? '' : ` ,`}` : 'N/A' } </InfoTag>
-                            <InfoTag> <strong> Languages: </strong> { languages ? `${Object.values(languages)} ${Object.values(languages).at(-1) ? '' : ` ,`} ` : 'N/A' } </InfoTag>                    
-                        </RightInfo>
-                    </DetailsInfo>
-                    <BorderBase>
-                        <InfoTag>
-                            <strong> Border Countries: </strong>
-                        </InfoTag>
-                        <BorderCountriesBox>
-                            { borders && borders.length > 0 ? bordersCountries.map(item => {
-                                    return <BorderItem onClick={() => goToCountry(item)} key={item.name.common}>
-                                        <InfoTag> {item.name.common} </InfoTag>
-                                    </BorderItem>
-                            }) : <BorderItem> <InfoTag> N/A </InfoTag> </BorderItem> }
-                        </BorderCountriesBox>
-                    </BorderBase>
-                </DetailsBaseInfo>
-
-            </DetailsBase>
-
-        </RootBase>
-    )
-
-}
-
-export default CountryPage
+export default CountryPage;
