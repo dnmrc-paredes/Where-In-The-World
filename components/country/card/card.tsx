@@ -1,12 +1,7 @@
 import React, { FC } from "react";
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
-
-// Utils
 import { commaNumber } from '../../../utils/numComma'
-
-// Types
 type Props = {
     name: string
     population: number
@@ -15,9 +10,7 @@ type Props = {
     img: string
     cca3: string
 }
-
-// Styled Components
-import { Card, CountryDetails, CountryInfo, Title, ImageHolder, Detail } from "./cardStyles";
+import * as S from "./cardStyles";
 
 export const CountryCard: FC<Props> = (props) => {
 
@@ -25,21 +18,21 @@ export const CountryCard: FC<Props> = (props) => {
 
     return (
         <Link passHref href={`/country/${name}`}>
-            <Card>
-                <ImageHolder>
+            <S.Card>
+                <S.ImageHolder>
                     <Image placeholder="blur" blurDataURL={img} height={150} width={250} alt={name} src={img} />
-                </ImageHolder>
-                <CountryInfo>
-                    <CountryDetails>
-                        <Title> {name.length < 15 ? name : `${name.substring(0,15)}...`} </Title>
-                        <Detail> Population: {commaNumber(population)} </Detail>
-                        <Detail> Region: {region} </Detail>
+                </S.ImageHolder>
+                <S.CountryInfo>
+                    <S.CountryDetails>
+                        <S.Title> {name.length < 15 ? name : `${name.substring(0,15)}...`} </S.Title>
+                        <S.Detail> Population: {commaNumber(population)} </S.Detail>
+                        <S.Detail> Region: {region} </S.Detail>
                         { capital ? 
-                        <Detail> Capital: {capital[0]} </Detail>
-                        : <Detail> Capital: N/A </Detail> }
-                    </CountryDetails>
-                </CountryInfo>
-            </Card>
+                        <S.Detail> Capital: {capital[0]} </S.Detail>
+                        : <S.Detail> Capital: N/A </S.Detail> }
+                    </S.CountryDetails>
+                </S.CountryInfo>
+            </S.Card>
         </Link>
     )
 
