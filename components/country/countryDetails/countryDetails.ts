@@ -72,9 +72,6 @@ export const RightInfo = styled.div`
 export const BorderBase = styled.section`
     display: flex;
     margin-top: 40px;
-    /* align-items: center; */
-    /* justify-content: center; */
-
     @media screen and (max-width: 700px) {
         align-items: unset;
         flex-direction: column;
@@ -88,7 +85,6 @@ export const BorderCountriesBox = styled.div`
     margin: 0 10px;
     flex-flow: row wrap;
     padding-bottom: 2rem;
-    
     @media screen and (max-width: 700px) {
         margin-top: 18px;
         justify-content: flex-start;
@@ -96,7 +92,6 @@ export const BorderCountriesBox = styled.div`
 `
 
 export const BorderItem = styled.div`
-    /* background-color: blue; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,10 +124,7 @@ export const BackBtn = styled.button`
     height: 30px;
     align-items: center;
     background-color: white;
-    /* margin: 0 120px; */
     margin: 0 8vw;
-    /* margin: 0 200px; */
-
     @media screen and (max-width: 700px) {
         margin: 0 40px;
     }
