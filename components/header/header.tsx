@@ -8,7 +8,9 @@ export const Header: FC = () => {
 
   return (
     <S.Navbar>
-      <h2 onClick={() => router.push("/")}> Where in the world? </h2>
+      <a onClick={() => router.push("/")}>
+        <h2>Where in the world?</h2>
+      </a>
       <S.ToggleTheme>
         <IoMoonOutline size={20} />
         <S.ThemeText> Dark Mode </S.ThemeText>
