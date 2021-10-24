@@ -4,7 +4,7 @@ import * as S from "./filterDropdownStyles";
 type Props = {
   setValue: Dispatch<SetStateAction<string>>;
 };
-
+const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
 export const FilterDropdown: FC<Props> = ({ setValue }) => {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setValue(e.target.value);
@@ -20,11 +20,11 @@ export const FilterDropdown: FC<Props> = ({ setValue }) => {
         <option value="filter by region" disabled hidden>
           Filter by Region
         </option>
-        <option value="Africa"> Africa </option>
-        <option value="Americas"> America </option>
-        <option value="Asia"> Asia </option>
-        <option value="Europe"> Europe </option>
-        <option value="Oceania"> Oceania </option>
+        {regions.map((region) => (
+          <option key={region} value={region}>
+            {region}
+          </option>
+        ))}
       </S.Dropdown>
     </S.Base>
   );
