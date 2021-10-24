@@ -9,40 +9,6 @@ import { ICountry } from "../../types/interfaces";
 import { commaNumber } from "../../utils/numComma";
 import * as S from "../../components/country/countryDetails/countryDetails";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const allCountries = (await (
-    await fetch(`${apiURL}/all`)
-  ).json()) as ICountry[];
-  const paths = allCountries.map((item) => {
-    return { params: { countryName: item.name.common } };
-  });
-
-  return {
-    paths,
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { countryName } = params as { countryName: string };
-
-  const country = (await (
-    await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)
-  ).json()) as ICountry[];
-  const borders = country[0].borders;
-  const yawa = borders ? borders.map((item) => item) : [];
-  const bordersCountries = (await (
-    await fetch(`${apiURL}/alpha/?codes=${yawa},`)
-  ).json()) as ICountry[];
-  return {
-    props: {
-      country: country[0],
-      bordersCountries,
-    },
-    revalidate: 5,
-  };
-};
-
 const CountryPage: NextPage<{
   country: ICountry;
   bordersCountries: ICountry[];
@@ -166,3 +132,37 @@ const CountryPage: NextPage<{
 };
 
 export default CountryPage;
+
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const allCountries = (await (
+    await fetch(`${apiURL}/all`)
+  ).json()) as ICountry[];
+  const paths = allCountries.map((item) => {
+    return { params: { countryName: item.name.common } };
+  });
+
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { countryName } = params as { countryName: string };
+
+  const country = (await (
+    await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)
+  ).json()) as ICountry[];
+  const borders = [...country[0].borders]
+  const bordersCountries = (await (
+    await fetch(`${apiURL}/alpha/?codes=${borders},`)
+  ).json()) as ICountry[];
+  return {
+    props: {
+      country: country[0],
+      bordersCountries,
+    },
+    revalidate: 5,
+  };
+};
