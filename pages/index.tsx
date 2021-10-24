@@ -14,14 +14,14 @@ import { SearchbarComponent } from '../components/searchbar/searchbar'
 import { FilterDropdown } from '../components/filterDropdown/filterDropdown'
 
 // Types
-import { ICountry } from '../types/interfaces'
+import { Country } from '../types/interfaces'
 type Props = {
-  allCountries: ICountry[]
+  allCountries: Country[]
 }
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const allCountries = await (await fetch(`${apiURL}/all`)).json() as ICountry[]
+  const allCountries = await (await fetch(`${apiURL}/all`)).json() as Country[]
   
   return {
     props: {

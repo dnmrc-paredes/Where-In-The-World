@@ -5,13 +5,13 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { apiURL } from "../../constants/url";
-import { ICountry } from "../../types/interfaces";
+import { Country } from "../../types/interfaces";
 import { commaNumber } from "../../utils/numComma";
 import * as S from "../../components/country/countryDetails/countryDetails";
 
 const CountryPage: NextPage<{
-  country: ICountry;
-  bordersCountries: ICountry[];
+  country: Country;
+  bordersCountries: Country[];
 }> = ({ country, bordersCountries }) => {
   const {
     borders,
@@ -28,7 +28,7 @@ const CountryPage: NextPage<{
 
   const router = useRouter();
 
-  const goToCountry = (country: ICountry) => {
+  const goToCountry = (country: Country) => {
     router.push(`/country/${country.name.common}`, undefined, {
       shallow: false,
     });
@@ -133,11 +133,10 @@ const CountryPage: NextPage<{
 
 export default CountryPage;
 
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const allCountries = (await (
     await fetch(`${apiURL}/all`)
-  ).json()) as ICountry[];
+  ).json()) as Country[];
   const paths = allCountries.map((item) => {
     return { params: { countryName: item.name.common } };
   });
@@ -153,11 +152,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const country = (await (
     await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)
-  ).json()) as ICountry[];
-  const borders = [...country[0].borders]
+  ).json()) as Country[];
+  const borders = [...country[0].borders];
   const bordersCountries = (await (
     await fetch(`${apiURL}/alpha/?codes=${borders},`)
-  ).json()) as ICountry[];
+  ).json()) as Country[];
   return {
     props: {
       country: country[0],
