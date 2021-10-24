@@ -12,13 +12,12 @@ export const Base = styled.div`
     }
 `;
 
-export const Icon = styled.div(({theme}) => ({
+export const Icon = styled.div(({ theme }) => ({
     flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.elements,
-
     '@media screen and (max-width: 800px)': {
         flex: 2.5
     }
@@ -33,7 +32,7 @@ export const SearchBase = styled.div`
     }
 `;
 
-export const SearchInput = styled.input(({theme}) => ({
+export const SearchInput = styled.input(({ theme }) => ({
     border: 'none',
     outline: 'none',
     flex: 1,
@@ -41,7 +40,6 @@ export const SearchInput = styled.input(({theme}) => ({
     fontWeight: 300,
     backgroundColor: theme.elements,
     color: theme.txtColor,
-
     '&::placeholder': {
         color: theme.txtColor
     }

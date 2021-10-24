@@ -1,69 +1,55 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-// Utils
+import * as S from "./cardStyles";
 import { commaNumber } from "../../../utils/numComma";
 
-// Types
 type Props = {
-    name: string;
-    population: number;
-    region: string;
-    capital: string[];
-    img: string;
-    cca3: string;
+  name: string;
+  population: number;
+  region: string;
+  capital: string[];
+  img: string;
+  cca3: string;
 };
 
-// Styled Components
-import {
-    Card,
-    CountryDetails,
-    CountryInfo,
-    Title,
-    ImageHolder,
-    Detail,
-} from "./cardStyles";
+export const Card: FC<Props> = (props) => {
+  const { name, population, region, capital, img } = props;
 
-export const CountryCard: FC<Props> = (props) => {
-    const { name, population, region, capital, img } = props;
-
-    return (
-        <Link passHref href={`/country/${name}`}>
-            <Card data-testid={`country${name}`} >
-                <ImageHolder>
-                    <Image
-                        placeholder="blur"
-                        blurDataURL={img}
-                        height={150}
-                        width={250}
-                        alt={name}
-                        src={img}
-                    />
-                </ImageHolder>
-                <CountryInfo>
-                    <CountryDetails>
-                        <Title data-testid="countryName">
-                            {name.length < 15 ? name : `${name.substring(0, 15)}...`}
-                        </Title>
-                        <Detail data-testid="countryPopulation">
-                            <strong> Population: </strong> {commaNumber(population)}
-                        </Detail>
-                        <Detail data-testid="countryRegion">
-                            <strong> Region: </strong> {region}
-                        </Detail>
-                        {capital ? (
-                            <Detail data-testid="countryCapital">
-                                <strong> Capital: </strong> {capital[0]}
-                            </Detail>
-                        ) : (
-                            <Detail data-testid="countryCapitalNone">
-                                <strong> Capital: </strong> N/A
-                            </Detail>
-                        )}
-                    </CountryDetails>
-                </CountryInfo>
-            </Card>
-        </Link>
-    );
+  return (
+    <Link passHref href={`/country/${name}`}>
+      <S.Card data-testid={`country${name}`}>
+        <Image
+          placeholder="blur"
+          blurDataURL={img}
+          height={150}
+          width={250}
+          alt={name}
+          src={img}
+        />
+        <S.CountryInfo>
+          <S.CountryDetails>
+            <S.Title data-testid="countryName">
+              {name.length < 15 ? name : `${name.substring(0, 15)}...`}
+            </S.Title>
+            <S.Detail data-testid="countryPopulation">
+              <strong> Population: </strong> {commaNumber(population)}
+            </S.Detail>
+            <S.Detail data-testid="countryRegion">
+              <strong> Region: </strong> {region}
+            </S.Detail>
+            {capital ? (
+              <S.Detail data-testid="countryCapital">
+                <strong> Capital: </strong> {capital[0]}
+              </S.Detail>
+            ) : (
+              <S.Detail data-testid="countryCapitalNone">
+                <strong> Capital: </strong> N/A
+              </S.Detail>
+            )}
+          </S.CountryDetails>
+        </S.CountryInfo>
+      </S.Card>
+    </Link>
+  );
 };

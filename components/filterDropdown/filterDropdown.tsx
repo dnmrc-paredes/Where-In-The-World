@@ -1,9 +1,6 @@
 import React, { FC, Dispatch, SetStateAction, ChangeEvent } from "react";
+import * as S from "./filterDropdownStyles";
 
-// Styled Components
-import { Base, Dropdown } from "./filterDropdownStyles";
-
-// Types
 type Props = {
   setValue: Dispatch<SetStateAction<string>>;
 };
@@ -14,8 +11,8 @@ export const FilterDropdown: FC<Props> = ({ setValue }) => {
   };
 
   return (
-    <Base>
-      <Dropdown
+    <S.Base>
+      <S.Dropdown
         defaultValue="filter by region"
         onChange={handleChange}
         name="Filter by Region"
@@ -28,7 +25,7 @@ export const FilterDropdown: FC<Props> = ({ setValue }) => {
             {region}
           </option>
         ))}
-      </Dropdown>
-    </Base>
+      </S.Dropdown>
+    </S.Base>
   );
 };

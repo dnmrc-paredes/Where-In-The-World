@@ -2,7 +2,7 @@ import React from "react";
 import { Meta } from '@storybook/react'
 
 // Component
-import { CountryCard } from "../../../../components/country/card/card";
+import { Card as CountryCard } from "../../../../components/country/card/card";
 
 // Sample Country
 import { sampleCountry } from "../../../../constants/sampleCountry";
