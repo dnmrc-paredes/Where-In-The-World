@@ -3,7 +3,6 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import * as S from "../styles/errorStyles";
 
-
 const CustomError: NextPage = () => {
 
     const router = useRouter()

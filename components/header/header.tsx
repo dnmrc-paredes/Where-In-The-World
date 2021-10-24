@@ -28,3 +28,4 @@ export const Header: FC<Props> = ({ changeTheme, value }) => {
     </S.Navbar>
   );
 };
+
