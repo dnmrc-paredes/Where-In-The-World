@@ -33,8 +33,7 @@ export const NoResultsBase = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
-
-export const NoResultHeading = styled.h2`
-    color: ${props => props.theme.txtColor};
+    > h2 {
+        color: ${props => props.theme.txtColor};
+    }
 `
