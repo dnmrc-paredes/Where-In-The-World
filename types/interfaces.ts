@@ -1,4 +1,4 @@
-export interface ICountry {
+export interface Country {
     name: {
         common: string,
         official: string
@@ -16,20 +16,11 @@ export interface ICountry {
     population: number,
     region: string,
     subregion: string,
-    languages: anyKey[],
+    languages: {},
     borders: string[],
     flags: {
         svg: string,
         png: string
     }
-    currencies: {
-        [key: string]: {
-            name: string
-            symbol: string
-        }
-    }[]
-}
-
-export type anyKey = {
-    [key: string]: string
+    currencies: {}
 }
