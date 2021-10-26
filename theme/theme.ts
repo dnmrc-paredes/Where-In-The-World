@@ -1,5 +1,4 @@
 import { DefaultTheme } from "styled-components"
-
 export const lightMode = {
     bg: 'hsl(0, 0%, 98%)',
     txtColor: 'hsl(200, 15%, 8%)',

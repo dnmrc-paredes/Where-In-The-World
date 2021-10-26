@@ -1,4 +1,4 @@
-import { ICountry } from "../types/interfaces";
+import { Country } from "../types/interfaces";
 
 export const sampleCountry = {
     name: {
@@ -40,4 +40,4 @@ export const sampleCountry = {
         svg: "https://flagcdn.com/ca.svg",
         png: "https://flagcdn.com/w320/ca.png"
     }
-} as ICountry
+} as Country
