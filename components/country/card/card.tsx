@@ -28,9 +28,9 @@ export const CountryCard: FC<Props> = (props) => {
         <S.CountryInfo>
           <div>
             <h1>{name.length < 15 ? name : `${name.substring(0, 15)}...`}</h1>
-            <p> Population: {commaNumber(population)} </p>
-            <p> Region: {region} </p>
-            <p> Capital: {capital ? capital[0] : "N/A"} </p>
+            <p> <strong>Population:</strong> {commaNumber(population)} </p>
+            <p> <strong>Region:</strong>  {region} </p>
+            <p> <strong>Capital:</strong>  {capital ? capital[0] : "N/A"} </p>
           </div>
         </S.CountryInfo>
       </S.Card>

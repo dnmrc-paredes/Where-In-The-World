@@ -8,6 +8,9 @@ export const Card = styled.div(({theme}) => ({
     overflow: "hidden",
     backgroundColor: theme.elements,
     cursor: "pointer",
+    'div': {
+        color: theme.txtColor,
+    }
 }));
 
 export const Title = styled.h1(({theme}) => ({
@@ -34,6 +37,7 @@ export const CountryInfo = styled.section`
     display: flex;
     justify-content: center;
     height: 170px;
+    margin-top: 25px;
 `;
 
 export const CountryDetails = styled.div`
