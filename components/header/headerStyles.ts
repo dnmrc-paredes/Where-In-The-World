@@ -1,33 +1,33 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-export const Navbar = styled.nav`
-    padding: 1rem;
-    height: 70px;
-    display: flex;
-    box-shadow: 0px 3px 2px 0px #EBEBEB;
+export const Navbar = styled.nav(({theme}) => ({
+    padding: '1rem',
+    height: '70px',
+    display: 'flex',
+    boxShadow: '0px 3px 2px 0px #ebebeb',
+    backgroundColor: theme.elements,
 
-    @media screen and (max-width: 550px) {
-        height: 100px;
+    '@media screen and (max-width: 550px)': {
+        height: '100px'
     }
-`
+}))
 
 export const NavTitle = styled.div`
     flex: 1;
-    /* background-color: blue; */
     display: flex;
     align-items: center;
-`
+`;
 
-export const Title = styled.h2`
-    color: black;
-    margin-left: 3vw;
-    font-weight: 800;
-    cursor: pointer;
+export const Title = styled.h2(({theme}) => ({
+    color: theme.txtColor,
+    marginLeft: '3vw',
+    fontWeight: 800,
+    cursor: 'pointer',
 
-    @media screen and (max-width: 550px) {
-        font-size: 15px;
+    '@media screen and (max-width: 550px)': {
+        fontSize: '15px'
     }
-`
+}))
 
 export const ToggleTheme = styled.div`
     flex: 1;
@@ -35,12 +35,11 @@ export const ToggleTheme = styled.div`
     justify-content: flex-end;
     align-items: center;
     cursor: pointer;
-    /* background-color: pink; */
-`
+`;
 
-export const ThemeText = styled.p`
-    font-weight: 600;
-    margin-right: 3vw;
-    margin-left: 5px;
-    font-weight: 800;
-`
+export const ThemeText = styled.p(({theme}) => ({
+    fontWeight: 800,
+    marginRight: '3vw',
+    marginLeft: '5px',
+    color: theme.txtColor
+}));
