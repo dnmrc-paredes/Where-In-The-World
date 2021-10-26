@@ -2,11 +2,8 @@ import { useState } from 'react'
 import { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 
-// Styles
-import styles from '../styles/Home.module.css'
-
 // Styled Components
-import { NoResultHeading, NoResultsBase } from '../styles/rootPageStyles'
+import { NoResultHeading, NoResultsBase, Base, Options, Countries } from '../styles/rootPageStyles'
 
 // Constants
 import { apiURL } from '../constants/url'
@@ -17,14 +14,14 @@ import { SearchbarComponent } from '../components/searchbar/searchbar'
 import { FilterDropdown } from '../components/filterDropdown/filterDropdown'
 
 // Types
-import { ICountry } from '../types/interfaces'
+import { Country } from '../types/interfaces'
 type Props = {
-  allCountries: ICountry[]
+  allCountries: Country[]
 }
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const allCountries = await (await fetch(`${apiURL}/all`)).json() as ICountry[]
+  const allCountries = await (await fetch(`${apiURL}/all`)).json() as Country[]
   
   return {
     props: {
@@ -50,21 +47,21 @@ const Home: NextPage<Props> = ({ allCountries }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title> Where In The World </title>
         <meta name="description" content="Search for a country" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <Base>
 
-        <div className={styles.options}>
+        <Options>
           <SearchbarComponent value={search} setValue={setSearch} />
-          <FilterDropdown value={filter} setValue={setFilter} />
-        </div>
+          <FilterDropdown setValue={setFilter} />
+        </Options>
 
-        <div className={styles.countries}>
+        <Countries>
           { filterOrSearch().length <= 0 ? 
             <NoResultsBase>
                 <NoResultHeading> No Countries found </NoResultHeading>
@@ -80,9 +77,9 @@ const Home: NextPage<Props> = ({ allCountries }) => {
                       cca3={country.cca3}
                     />
             }) }
-        </div>
+        </Countries>
 
-      </main>
+      </Base>
     </div>
   )
   
