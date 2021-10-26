@@ -6,26 +6,12 @@ export const Navbar = styled.nav(({ theme }) => ({
     display: 'flex',
     boxShadow: '0px 3px 2px 0px #ebebeb',
     backgroundColor: theme.elements,
-
+    color: theme.txtColor,
     '@media screen and (max-width: 550px)': {
         height: '100px'
-    }
-}))
-
-export const NavTitle = styled.div`
-    flex: 1;
-    display: flex;
-    align-items: center;
-`;
-
-export const Title = styled.h2(({ theme }) => ({
-    color: theme.txtColor,
-    marginLeft: '3vw',
-    fontWeight: 800,
-    cursor: 'pointer',
-
-    '@media screen and (max-width: 550px)': {
-        fontSize: '15px'
+    },
+    'h2': {
+        marginLeft: '3vw',
     }
 }))
 
