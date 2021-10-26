@@ -1,11 +1,11 @@
-import React, { FC, Dispatch, SetStateAction, ChangeEvent } from "react";
+import React, { Dispatch, SetStateAction, ChangeEvent } from "react";
 import * as S from "./filterDropdownStyles";
 
 type Props = {
   setValue: Dispatch<SetStateAction<string>>;
 };
 const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
-export const FilterDropdown: FC<Props> = ({ setValue }) => {
+export const FilterDropdown = ({ setValue }: Props) => {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setValue(e.target.value);
   };
