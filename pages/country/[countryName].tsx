@@ -153,7 +153,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const country = (await (
     await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)
   ).json()) as Country[];
-  const borders = [...country[0].borders];
+  const borders = country[0].borders && [...country[0].borders];
   const bordersCountries = (await (
     await fetch(`${apiURL}/alpha/?codes=${borders},`)
   ).json()) as Country[];
