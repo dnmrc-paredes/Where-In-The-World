@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-export const Base = styled.main`
-    flex: 1;
-    display: flex;
-    background-color: ${props => props.theme.bg};
-    flex-direction: column;
-    min-height: 100vh;
-`
+export const Base = styled.main(({ theme }) => ({
+    flex: 1,
+    display: 'flex',
+    backgroundColor: theme.bg,
+    flexDirection: 'column',
+    minHeight: '100vh',
+}));
+
+
 
 export const Options = styled.div`
     padding: 3rem 55px 0 55px;
@@ -33,8 +35,7 @@ export const NoResultsBase = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
-
-export const NoResultHeading = styled.h2`
-    color: ${props => props.theme.txtColor};
+    > h2 {
+        color: ${props => props.theme.txtColor};
+    }
 `
