@@ -1,35 +1,31 @@
-import React, { FC, Dispatch, SetStateAction, ChangeEvent } from "react";
+import React, { Dispatch, SetStateAction, ChangeEvent } from "react";
+import * as S from "./filterDropdownStyles";
 
-// Styled Components
-import { Base, Dropdown } from "./filterDropdownStyles";
-
-// Types
 type Props = {
-    setValue: Dispatch<SetStateAction<string>>;
+  setValue: Dispatch<SetStateAction<string>>;
 };
+const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+export const FilterDropdown = ({ setValue }: Props) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setValue(e.target.value);
+  };
 
-export const FilterDropdown: FC<Props> = ({ setValue }) => {
-    
-    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setValue(e.target.value);
-    };
-
-    return (
-        <Base>
-            <Dropdown
-                defaultValue="filter by region"
-                onChange={handleChange}
-                name="Filter by Region"
-            >
-                <option value="filter by region" disabled hidden>
-                    Filter by Region
-                </option>
-                <option value="Africa"> Africa </option>
-                <option value="Americas"> America </option>
-                <option value="Asia"> Asia </option>
-                <option value="Europe"> Europe </option>
-                <option value="Oceania"> Oceania </option>
-            </Dropdown>
-        </Base>
-    );
+  return (
+    <S.Base>
+      <S.Dropdown
+        defaultValue="filter by region"
+        onChange={handleChange}
+        name="Filter by Region"
+      >
+        <option value="filter by region" disabled hidden>
+          Filter by Region
+        </option>
+        {regions.map((region) => (
+          <option key={region} value={region}>
+            {region}
+          </option>
+        ))}
+      </S.Dropdown>
+    </S.Base>
+  );
 };
