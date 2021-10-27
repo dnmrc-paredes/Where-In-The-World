@@ -39,3 +39,6 @@ export const NoResultsBase = styled.div`
         color: ${props => props.theme.txtColor};
     }
 `
+export const NoResultHeading = styled.h2`
+    color: ${props => props.theme.txtColor};
+`
