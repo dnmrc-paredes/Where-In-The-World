@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -9,10 +8,13 @@ import { Country } from "../../types/interfaces";
 import { commaNumber } from "../../utils/numComma";
 import * as S from "../../components/country/countryDetails/countryDetails";
 
-const CountryPage: NextPage<{
+const CountryPage = ({
+  country,
+  bordersCountries,
+}: {
   country: Country;
   bordersCountries: Country[];
-}> = ({ country, bordersCountries }) => {
+}) => {
   const {
     borders,
     capital,
@@ -133,33 +135,33 @@ const CountryPage: NextPage<{
 
 export default CountryPage;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const allCountries = (await (
-    await fetch(`${apiURL}/all`)
-  ).json()) as Country[];
-  const paths = allCountries.map((item) => {
+export const getStaticPaths = async () => {
+  const res = await fetch(`${apiURL}/all`);
+  const data = (await res.json()) as Country[];
+  const paths = data.map((item) => {
     return { params: { countryName: item.name.common } };
   });
-
   return {
     paths,
     fallback: "blocking",
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { countryName } = params as { countryName: string };
+export const getStaticProps = async (context: {
+  params: { countryName: string };
+}) => {
+  const countryName = context.params.countryName;
+  const res = await fetch(
+    `${apiURL}/name/${encodeURI(countryName)}?fullText=true`
+  );
+  const data = await res.json();
 
-  const country = (await (
-    await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`)
-  ).json()) as Country[];
-  const borders = country[0].borders && [...country[0].borders];
-  const bordersCountries = (await (
-    await fetch(`${apiURL}/alpha/?codes=${borders},`)
-  ).json()) as Country[];
+  const borders = data[0].borders && [...data[0].borders];
+  const borderCountriesRes = await fetch(`${apiURL}/alpha/?codes=${borders},`);
+  const bordersCountries = await borderCountriesRes.json();
   return {
     props: {
-      country: country[0],
+      country: data[0],
       bordersCountries,
     },
     revalidate: 5,
