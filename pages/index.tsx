@@ -37,7 +37,7 @@ const Home: NextPage<Props> = ({ allCountries }) => {
     );
   };
 
-  return (
+  return allCountries && (
     <div>
       <Head>
         <title> Where In The World </title>
