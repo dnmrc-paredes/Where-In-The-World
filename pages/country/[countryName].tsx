@@ -151,7 +151,9 @@ export const getStaticProps = async (context: {
   params: { countryName: string };
 }) => {
   const countryName = context.params.countryName;
-  const res = await fetch(`${apiURL}/name/${encodeURI(countryName)}?fullText=true`);
+  const res = await fetch(
+    `${apiURL}/name/${encodeURI(countryName)}?fullText=true`
+  );
   const data = await res.json();
 
   const borders = data[0].borders && [...data[0].borders];

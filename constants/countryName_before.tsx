@@ -6,13 +6,13 @@ import { useRouter } from "next/router";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 // Constants
-import { apiURL } from "../../constants/url";
+import { apiURL } from "./url";
 
 // Types
-import { ICountry } from "../../types/interfaces_before";
+import { ICountry } from "../types/interfaces_before";
 
 // Utils
-import { commaNumber } from "../../utils/numComma";
+import { commaNumber } from "../utils/numComma";
 
 // Styled Components
 import {
@@ -30,7 +30,7 @@ import {
     BorderCountriesBox,
     BackBase,
     BackBtn,
-} from "../../components/country/countryDetails/countryDetails";
+} from "../components/country/countryDetails/countryDetails";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const allCountries = (await (
