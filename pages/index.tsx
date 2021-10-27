@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NextPage, GetStaticProps } from "next";
+import { NextPage } from "next";
 import Head from "next/head";
 import * as S from "../styles/rootPageStyles";
 import { apiURL } from "../constants/url";
@@ -12,13 +12,11 @@ type Props = {
 };
 
 export const getStaticProps = async () => {
-  const allCountries = (await (
-    await fetch(`${apiURL}/all`)
-  ).json()) as Country[];
-
+  const res = await fetch(`${apiURL}/all`);
+  const data = await res.json();
   return {
     props: {
-      allCountries,
+      allCountries: data,
     },
   };
 };
