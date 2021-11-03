@@ -1,4 +1,4 @@
-# Where In The World
+# Where In The World - Frontend Mentor
 
 ## A Next JS project paired with REST Countries API | Frontend Mentor Challenge
 
