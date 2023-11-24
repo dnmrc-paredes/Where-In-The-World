@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
-  images: {
-    domains: ['upload.wikimedia.org', 'flagcdn.com'],
-  }
+	reactStrictMode: true,
+	images: {
+		remotePatterns: [
+			{
+				hostname: 'upload.wikimedia.org'
+			},
+			{
+				hostname: 'flagcdn.com'
+			}
+		]
+	},
+	compiler: {
+		styledComponents: true
+	}
 }
